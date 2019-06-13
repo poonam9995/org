@@ -1,0 +1,47 @@
+<div class="employeeform">
+    <div class="form-Header">
+      Employee Login
+    </div>
+    <br>
+    <div class="form-contain">
+      <form (ngSubmit)="onSubmit()" [formGroup]='login' class="form">
+  
+      
+            <div class="form-group">
+                <label for="inputemail">Email Id :<label class="red-text">*</label></label>
+                <input type="email" formControlName='email' class="form-control" placeholder="@gmail.com" required>
+      
+                <div class="alert red-text"
+                  *ngIf="login.get('email').hasError('required') && (login.get('email').touched || login.get('email').dirty) ">
+                  Enter Email Id
+                </div>
+                <div class="alert red-text"
+                  *ngIf="login.get('email').hasError('pattern') && (login.get('email').touched || login.get('email').dirty) ">
+                  Enter Valid Email Id
+                </div>
+              </div>
+            
+         
+  
+          <div class="form-group ">
+              <label >Password:
+                  <label class="red-text">*</label>
+                </label>
+                <input type="password" formControlName='password' class="form-control" required />
+                <div class="alert   red-text"  *ngIf="login.get('password').hasError('required') && (login.get('password').touched || login.get('password').dirty) ">
+                  Enter password.
+                </div> 
+              </div>
+  
+            
+         <button type="submit" [disabled]="login.controls['email' && 'password'].invalid || login.prestine" class="btn btn-primary">Submit</button>
+        <a routerLink="/register" class="btn btn-primary float-right">Registration</a>
+
+      </form>
+   
+    </div>
+  
+  </div> 
+
+
+

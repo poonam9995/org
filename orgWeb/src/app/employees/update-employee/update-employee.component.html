@@ -1,0 +1,182 @@
+<div class="employeeform">
+  <div class="form-Header">
+    Employee Registration
+  </div>
+  <br>
+  <form (ngSubmit)="onSubmit()" [formGroup]='RegistrationEmployee' class="form">
+
+    <input type="hidden" formControlName='_id' class="form-control" />
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputEmail4">First Name:
+          <label class="red-text">*</label>
+        </label>
+        <input type="text" formControlName='firstName' class="form-control" placeholder="Enter First Name" required />
+        <div class="alert   red-text"
+          *ngIf="RegistrationEmployee.get('firstName').hasError('required') && (RegistrationEmployee.get('firstName').touched || RegistrationEmployee.get('firstName').dirty) ">
+          Enter First Name.
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputPassword4">Last Name :
+          <label class="red-text">*</label>
+        </label>
+        <input type="text" formControlName='lastName' class="form-control" placeholder="Enter Last Name" required />
+        <div class="alert red-text" *ngIf="RegistrationEmployee.get('lastName').hasError('required') && (RegistrationEmployee.get('lastName').touched || RegistrationEmployee.get('lastName').dirty)">
+          Enter Last Name.
+        </div>
+      </div>
+    </div>
+
+ 
+    <br> 
+    <br>
+
+
+    <div class="form-group">
+      <label for="inputemail">Email Id :<label class="red-text">*</label></label>
+      <input type="email" formControlName='email' class="form-control" placeholder="@gmail.com" required>
+
+      <div class="alert red-text"
+        *ngIf="RegistrationEmployee.get('email').hasError('required') && (RegistrationEmployee.get('email').touched || RegistrationEmployee.get('email').dirty) ">
+        Enter Email Id
+      </div>
+      <div class="alert red-text"
+        *ngIf="RegistrationEmployee.get('email').hasError('pattern') && (RegistrationEmployee.get('email').touched || RegistrationEmployee.get('email').dirty) ">
+        Enter Valid Email Id
+      </div>
+    </div>
+<div class="row">
+    <div class="form-group col-md-6">
+      <label for="inputmobileNo">Mobile No:</label>
+      <input type="text" formControlName='mobile' class="form-control" placeholder="Enter Mobile No." maxlength="10"
+        minlength="10">
+      <div class="alert   red-text" *ngIf="RegistrationEmployee.get('mobile').hasError('pattern')">
+        Enter Valid Mobile Number
+      </div>
+      <div class="alert   red-text" *ngIf="RegistrationEmployee.get('mobile').hasError('maxLength')">
+        Enter mobile no with maximun 10 digites.
+      </div>
+    </div>
+
+    <div class="form-group  col-md-6">
+        <label for="inputmobileNo">Profile Picture:</label>
+        <div class="row ">
+            <div class="form-group col-md-2">
+        <ngx-avatar src="http://localhost:4000/{{data.image}}" ></ngx-avatar>   
+        </div>
+        <div class="form-group col-md-6">
+      <input type='file' formControleName='file' class=''  (change)="onFileChange($event)">
+       </div>
+       </div>
+    <!-- <div class= "form-group col-md-6" >
+        <label for="inputmobileNo">Profile Picture:</label>
+     
+          <div class="form-group ">
+                    <input type='file' formControleName='image' (change)="onFileChange($event)">
+          </div>
+       </div> -->
+     </div>
+</div>
+    <div class="form-group">
+      <label for="inputdob">Date Of Birth:</label>
+      <input type="text" formControlName='dob' class="form-control" [maxDate]="maxDate" placeholder="Date of Birth"
+        value="{{RegistrationEmployee.controls['dob'].value | date: 'dd/MM/yyyy'}}" bsDatepicker>
+    </div>
+
+
+    <div class="form-group">
+      <label for="inputaddress">Address :</label>
+      <textarea type="text" formControlName='address' class="form-control">
+    </textarea>
+    </div>
+
+
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="inputState">State</label>
+        <select id="inputState" class="form-control" formControlName='state' (change)="onclick($event);">
+          <option selected>Choose...</option>
+          <option *ngFor="let state of statedata, index as i" value="{{state}}" #state1>{{state}}</option>
+        </select>
+      </div>
+
+   
+      <div class="form-group col-md-4">
+        <label for="inputState">City</label>
+        <select id="inputState" formControlName='city' class="form-control">
+          <option selected>Choose...</option>
+          <option *ngFor="let city of citydata" value="{{city}}">{{city}}</option>
+        </select>
+      </div>
+
+
+      <div class="form-group col-md-4">
+        <label for="inputZip">Zip</label>
+        <input type="text" id="zip" formControlName='zip' class="form-control" mask="000-000" id="inputZip">
+        <div class="alert red-text" *ngIf="RegistrationEmployee.get('zip').hasError('pattern')">
+          Enter Only Six Digite Number
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="form-radio">
+        <div class="row">
+          <div class="radio form-group col-md-3">
+            <label>Gender :</label>
+          </div>
+          <div class="radio form-group col-md-3">
+            <input type="radio" formControlName='gender' value="male">Male
+          </div>
+          <div class="radio form-group col-md-4">
+            <input type="radio" formControlName='gender' value="Female">Female
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="form-group">
+
+
+      <div class="col-md-9">
+        <label class="ml-2 mr-2">
+          Hobbies:-
+        </label>
+
+        <div class="form-check form-check-inline " *ngFor="let hobby of hobbies , index as i">
+          <input type="checkbox" value='{{hobby.id}}' [checked]='newPref1[i]' formControlName="hob"
+            (change)="hobbiesCheckArray($event, hobby.name)">
+          <label class="form-check-label" for="inlineCheckbox1"> {{hobby.name}} </label>
+        </div>
+        <span style="color:red">{{msgs1}}</span>
+
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <label for="techSkill">Technical Skills</label>
+      <tag-input formControlName='techSkill' [separatorKeyCodes]="[188]" (onAdd)="onSkillAdd($event)">
+      </tag-input>
+      <div class="alert red-text" *ngIf="RegistrationEmployee.get('techSkill').errors?.skillvali">
+        Must Be Enter Minimun Two Technical Skills
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="inputsalary">Salary :</label>
+      <input type="text" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
+        formControlName="salary" class="form-control" />
+
+    </div>
+
+
+
+    <button type="submit" [disabled]="RegistrationEmployee.controls['firstName' && 'lastName' && 'email' ].invalid"
+      class="btn btn-primary">Submit</button>
+
+  </form>
+</div>

@@ -1,0 +1,155 @@
+
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Quick Add</button>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        
+        <h4 class="modal-title">Quick Add Employee</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+          <div class="form-contain">
+              <form (ngSubmit)="onSubmit()" [formGroup]='RegistrationEmployee' class="form">
+          
+                <input type="hidden" formControlName='_id' class="form-control" />
+          
+              
+                  <div class="form-group ">
+                    <label for="inputEmail4">First Name:
+                      <label class="red-text">*</label>
+                    </label>
+                    <input type="text" formControlName='firstName' class="form-control" placeholder="Enter First Name" required />
+                    <div class="alert   red-text"
+                      *ngIf="RegistrationEmployee.get('firstName').hasError('required') && (RegistrationEmployee.get('firstName').touched || RegistrationEmployee.get('firstName').dirty) ">
+                      Enter First Name.
+                    </div>
+          
+          
+                  </div>
+                  <div class="form-group ">
+                    <label for="inputPassword4">Last Name :
+                      <label class="red-text">*</label>
+                    </label>
+                    <input type="text" id="inputPassword4" formControlName='lastName' class="form-control"
+                      placeholder="Enter Last Name" required />
+                    <div class="alert   red-text"
+                      *ngIf="RegistrationEmployee.get('lastName').hasError('required') && (RegistrationEmployee.get('lastName').touched || RegistrationEmployee.get('lastName').dirty) ">
+                      Enter Last Name.
+                    </div>
+                  </div>
+               
+          
+               
+                  <div class="form-group ">
+                    <label for="inputemail">Email Id :</label>
+                    <input type="email" formControlName='email' class="form-control" placeholder="@gmail.com" required>
+          
+                    <div class="alert red-text"
+                      *ngIf="RegistrationEmployee.get('email').hasError('required') && (RegistrationEmployee.get('email').touched || RegistrationEmployee.get('email').dirty) ">
+                      Enter Email Id
+                    </div>
+                    <div class="alert red-text"
+                      *ngIf="RegistrationEmployee.get('email').hasError('pattern') && (RegistrationEmployee.get('email').touched || RegistrationEmployee.get('email').dirty) ">
+                      Enter Valid Email Id
+                    </div>
+                  </div>
+          
+                  <div class="form-group ">
+                    <label for="inputemail">Profile Image :</label>
+                    <input type='file' formControleName='file' class='form-control' (change)="onFileChange($event)">
+                  </div>
+                
+                <button type="submit"
+                  [disabled]="RegistrationEmployee.controls['firstName' && 'lastName' && 'email'].invalid || RegistrationEmployee.prestine"
+                  class="btn btn-primary" >Submit</button>
+              </form>
+            </div>
+      </div>
+      <div class="modal-footer">
+       
+        <a routerLink="/employees" class="btn btn-default" data-dismiss="modal">
+          Close
+         </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="employeeform">
+  <div class="form-Header">
+    Employee Registration
+  </div>
+  <br>
+  <div class="form-contain">
+    <form (ngSubmit)="onSubmit()" [formGroup]='RegistrationEmployee' class="form">
+
+      <input type="hidden" formControlName='_id' class="form-control" />
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputEmail4">First Name:
+            <label class="red-text">*</label>
+          </label>
+          <input type="text" formControlName='firstName' class="form-control" placeholder="Enter First Name" required />
+          <div class="alert   red-text"
+            *ngIf="RegistrationEmployee.get('firstName').hasError('required') && (RegistrationEmployee.get('firstName').touched || RegistrationEmployee.get('firstName').dirty) ">
+            Enter First Name.
+          </div>
+
+
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputPassword4">Last Name :
+            <label class="red-text">*</label>
+          </label>
+          <input type="text" id="inputPassword4" formControlName='lastName' class="form-control"
+            placeholder="Enter Last Name" required />
+          <div class="alert   red-text"
+            *ngIf="RegistrationEmployee.get('lastName').hasError('required') && (RegistrationEmployee.get('lastName').touched || RegistrationEmployee.get('lastName').dirty) ">
+            Enter Last Name.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputemail">Email Id :</label>
+          <input type="email" formControlName='email' class="form-control" placeholder="@gmail.com" required>
+
+          <div class="alert red-text"
+            *ngIf="RegistrationEmployee.get('email').hasError('required') && (RegistrationEmployee.get('email').touched || RegistrationEmployee.get('email').dirty) ">
+            Enter Email Id
+          </div>
+          <div class="alert red-text"
+            *ngIf="RegistrationEmployee.get('email').hasError('pattern') && (RegistrationEmployee.get('email').touched || RegistrationEmployee.get('email').dirty) ">
+            Enter Valid Email Id
+          </div>
+        </div>
+
+        <div class="form-group col-md-6">
+          <label for="inputemail">Profile Image :</label>
+          <input type='file' formControleName='file' class='form-control' (change)="onFileChange($event)">
+        </div>
+      </div>
+      <button type="submit"
+        [disabled]="RegistrationEmployee.controls['firstName' && 'lastName' && 'email'].invalid || RegistrationEmployee.prestine"
+        class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+
+</div> -->

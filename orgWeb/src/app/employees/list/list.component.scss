@@ -1,0 +1,18 @@
+.profile{
+  height: 50px;
+  width: 50px;
+    border-radius: 75%;
+  
+    inline-size: 50px;
+    box-shadow: 0px 3px 10px white;
+}
+thead {
+    background-color: lightgrey
+    
+}
+th{
+    color:black;
+}
+ tbody tr.hover{
+    background-color: lightsteelblue
+ }

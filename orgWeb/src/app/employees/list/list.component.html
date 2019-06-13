@@ -1,0 +1,54 @@
+
+<h2>
+    <a routerLink="/quickAdd" class="btn btn-primary float-right">Quick Add Employee</a>
+  </h2>
+
+<h2>Employees
+  <a routerLink="/add" class="btn btn-primary float-right">Add Employee</a>
+</h2>
+<div class="table-responsive" data-dismiss="modal">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+          <th scope="col" >Emp No.</th>
+        <th scope="col">Profile</th>
+        <th scope="col"> Employee Name</th>
+       
+        <th scope="col">Email Id </th>
+        <th scope="col">Mobile No.</th>
+        <th scope="col">DOB </th>
+       
+     
+        <th scope="col">Opration</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr *ngFor="let emp of employees ; let i = index" >
+        <td style="color:brown">
+        {{i + 1}}
+        </td>
+        <td><ngx-avatar src="http://localhost:4000/{{emp.image}}"></ngx-avatar>
+        
+         </td>
+        <td>{{emp.firstName}} {{emp.lastName}}</td>
+       
+        <td>{{emp.email}}</td>
+        <td>{{emp.mobile}}</td>
+        <td>{{emp.dob | date: 'dd/MM/yyyy'}}</td>
+      
+      
+       
+
+        <td>
+          <a routerLink="/update/{{emp._id}}" class="btn action-btn">
+            <i class="material-icons">edit</i>
+          </a>
+          <a class="btn action-btn" (click)="onDelete(emp._id)">
+            <i class="material-icons">delete</i></a>
+        </td>
+
+      </tr>
+    </tbody>
+  </table>
+</div>
