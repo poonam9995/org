@@ -49,9 +49,8 @@
     </div>
 <div class="row">
     <div class="form-group col-md-6">
-      <label for="inputmobileNo">Mobile No:</label>
-      <input type="text" formControlName='mobile' class="form-control" placeholder="Enter Mobile No." maxlength="10"
-        minlength="10">
+      <label>Mobile No:</label>
+      <input type="text" value="{{RegistrationEmployee.controls['mobile'].value}}" formControlName='mobile' class="form-control" placeholder="Enter Mobile No." maxlength="10" minlength="10">
       <div class="alert   red-text" *ngIf="RegistrationEmployee.get('mobile').hasError('pattern')">
         Enter Valid Mobile Number
       </div>
@@ -67,7 +66,7 @@
         <ngx-avatar src="http://localhost:4000/{{data.image}}" ></ngx-avatar>   
         </div>
         <div class="form-group col-md-6">
-      <input type='file' formControleName='file' class=''  (change)="onFileChange($event)">
+      <input type='file' formControleName='file' class='' value="http://localhost:4000/{{data.image}}" (change)="onFileChange($event)">
        </div>
        </div>
     <!-- <div class= "form-group col-md-6" >
@@ -159,7 +158,7 @@
 
     <div class="form-group">
       <label for="techSkill">Technical Skills</label>
-      <tag-input formControlName='techSkill' [separatorKeyCodes]="[188]" (onAdd)="onSkillAdd($event)">
+      <tag-input formControlName='techSkill' [separatorKeyCodes]="[188]" (onRemove)="onRemoveing($event)" (onAdd)="onSkillAdd($event)">
       </tag-input>
       <div class="alert red-text" *ngIf="RegistrationEmployee.get('techSkill').errors?.skillvali">
         Must Be Enter Minimun Two Technical Skills

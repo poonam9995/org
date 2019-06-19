@@ -16,7 +16,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { SweetAlertService } from 'ngx-sweetalert2';
 import { NgxCurrencyModule } from "ngx-currency";
 import {NgxMaskModule} from 'ngx-mask'
-
+import { ModalModule } from 'ngx-bootstrap/modal';
 import { AvatarModule } from 'ngx-avatar';
 import { QuickComponent } from './employees/quick/quick.component';
 import { AuthModule } from './auth/auth.module';
@@ -53,7 +53,7 @@ const avatarColors = ["#FFB6C1", "#2c3e50", "#95a5a6", "#f39c12", "#1abc9c"];
       AvatarModule.forRoot({
         colors:avatarColors
       }),
-     
+      ModalModule.forRoot()
   ],
   providers: [AuthGuard,
   {

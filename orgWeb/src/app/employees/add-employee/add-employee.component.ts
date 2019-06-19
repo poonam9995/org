@@ -71,12 +71,27 @@ export class AddEmployeeComponent implements OnInit {
 
 
   }
+
   onSkillAdd(event) {
     const teSkill = event.value;
 
     // console.log(teSkill);
     this.techSkills.push(teSkill);
     console.log("---------------------------------", this.techSkills);
+  }
+
+  onRemoveing(event){
+
+    console.log(event.value);
+    console.log(this.techSkills);
+    for(var i =0 ;i<this.techSkills.length ;i++){
+      if(event.value==this.techSkills[i]){
+        console.log(event.value);
+        this.techSkills.splice(i,1);
+      }
+    }
+    console.log(this.techSkills);
+ 
   }
   onFileChange(event) {
     this.uploadfile = event.target.files[0];
@@ -103,9 +118,7 @@ export class AddEmployeeComponent implements OnInit {
       'techSkill': this.techSkills,
       'salary': this.RegistrationEmployee.value.salary,
       'hob': this.details
-
     }
-
     Object.entries(emp).forEach(
       ([key, value]: any[]) => {
         this.formData.append(key, value);
@@ -119,16 +132,11 @@ export class AddEmployeeComponent implements OnInit {
       else {
         this.toastr.success('Employee Registration Successfully', 'Registered Succesfully.');
       }
-
-
     });
 
     // this.insert(this.RegistrationEmployee.value);
     this.router.navigate(['/employees']);
   }
-
-
-
   onclick(event) {
     const val = event.target.value;
     this.citydata = this.stateservice.city[val];

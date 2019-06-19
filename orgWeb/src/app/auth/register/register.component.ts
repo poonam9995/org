@@ -26,7 +26,7 @@ export class RegisterComponent implements OnInit {
       email: new FormControl(null, Validators.pattern(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,20}$/)),
       mobile: new FormControl(null, Validators.pattern(/^[7-9]\d{9}$/)),
       password: new FormControl('',Validators.required),
-      cpassword: new FormControl('',Validators.required),
+      cpassword: new FormControl('',[Validators.required,commonValidation.checkPassword]),
     });
   }
 

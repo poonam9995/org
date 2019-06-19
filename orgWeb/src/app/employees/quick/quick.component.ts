@@ -15,25 +15,24 @@ declare var M: any;
   providers: [EmployeeServiceService]
 })
 export class QuickComponent implements OnInit {
-public uploadfile;
-public formData = new FormData();
+  public uploadfile;
+  public formData = new FormData();
   constructor(private toastr: ToastrService, private employeeService: EmployeeServiceService, private stateservice: StateService, private route: ActivatedRoute, private router: Router) { }
-  RegistrationEmployee:FormGroup;
+  RegistrationEmployee: FormGroup;
   ngOnInit() {
-  
+
     this.RegistrationEmployee = new FormGroup({
       _id: new FormControl(null),
       firstName: new FormControl(null, Validators.required),
       lastName: new FormControl(null, Validators.required),
       email: new FormControl(null, Validators.pattern(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,20}$/)),
-      
       image: new FormControl(null)
     });
   }
 
   onFileChange(event) {
     this.uploadfile = event.target.files[0];
-    //  console.log(this.uploadfile);  
+    //console.log(this.uploadfile);  
   }
 
   onSubmit() {
@@ -45,7 +44,7 @@ public formData = new FormData();
       'firstName': this.RegistrationEmployee.value.firstName,
       'lastName': this.RegistrationEmployee.value.lastName,
       'email': this.RegistrationEmployee.value.email,
-      }
+    }
 
     Object.entries(emp).forEach(
       ([key, value]: any[]) => {

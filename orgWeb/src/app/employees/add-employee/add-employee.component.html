@@ -150,7 +150,7 @@
    
     <div class="form-group">
       <label for="techSkill">Technical Skills</label>
-      <tag-input formControlName='techSkill' [separatorKeyCodes]="[188]" (onAdd)='onSkillAdd($event)'>
+      <tag-input formControlName='techSkill' [separatorKeyCodes]="[188]"  (onAdd)='onSkillAdd($event)' (onRemove)="onRemoveing($event)">
       </tag-input>
       <div class="alert red-text" *ngIf="RegistrationEmployee.get('techSkill').errors?.skillvali && (RegistrationEmployee.get('techSkill').touched || RegistrationEmployee.get('techSkill').dirty) ">
         Must Be Enter Minimun Two Technical Skills

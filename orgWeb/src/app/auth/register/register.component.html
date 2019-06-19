@@ -1,6 +1,6 @@
 <div class="employeeform">
   <div class="form-Header">
-    Employee Registration
+    User Registration
   </div>
   <br>
   <div class="form-contain">
@@ -8,13 +8,12 @@
 
       
         <div class="form-group">
-          <label for="inputEmail4">Employee Name:
+          <label for="inputEmail4">User Name:
             <label class="red-text">*</label>
           </label>
           <input type="text" formControlName='Name' class="form-control" placeholder="Enter Employee Name" required />
-          <div class="alert   red-text"
-            *ngIf="RegistrationEmployee.get('Name').hasError('required') && (RegistrationEmployee.get('Name').touched || RegistrationEmployee.get('Name').dirty) ">
-            Enter Employee Name.
+          <div class="alert   red-text" *ngIf="RegistrationEmployee.get('Name').hasError('required') && (RegistrationEmployee.get('Name').touched || RegistrationEmployee.get('Name').dirty) ">
+            Enter User Name.
           </div>
 
 
@@ -42,18 +41,16 @@
                 Enter Valid Email Id
               </div>
             </div>
-          
-       
 
         <div class="form-group ">
             <label for="inputEmail4">Password:
                 <label class="red-text">*</label>
               </label>
               <input type="password" formControlName='password' class="form-control" placeholder="" required />
-              <div class="alert   red-text"
+              <!-- <div class="alert   red-text"
                 *ngIf="RegistrationEmployee.get('password').hasError('required') && (RegistrationEmployee.get('password').touched || RegistrationEmployee.get('password').dirty) ">
                 Enter password.
-              </div> 
+              </div>  -->
             </div>
 
             <div class="form-group">
@@ -61,10 +58,10 @@
                     <label class="red-text">*</label>
                   </label>
                   <input type="password" formControlName='cpassword' class="form-control" placeholder="" required  />
-                  <div class="alert   red-text"
+                  <!-- <div class="alert   red-text"
                     *ngIf="RegistrationEmployee.get('cpassword').hasError('required') && (RegistrationEmployee.get('cpassword').touched || RegistrationEmployee.get('cpassword').dirty) ">
                     Enter  password.
-                  </div> 
+                  </div>  -->
                 </div>
    
       <button type="submit"

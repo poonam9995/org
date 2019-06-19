@@ -22,6 +22,16 @@ export class AuthServiceService {
 
     return this.http.post("http://localhost:4000/auth/login" , login);
   }
+
+
+  forgetPassword(email){
+  
+   return this.http.post("http://localhost:4000/auth/forgetPass" , email);
+  }
+  resetPassword(password,id){
+    return this.http.put("http://localhost:4000/auth/resetPassword"+`/${id}`,password );
+  }
+
   loggedIn(){
   return !!localStorage.getItem('token')
   }

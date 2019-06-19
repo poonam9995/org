@@ -29,7 +29,7 @@ var { Employee } = require('../models/employee.js');
 
 
 
-router.get('/', (req, res, next) => {
+router.get('/',checkauth, (req, res, next) => {
     Employee.find((err, docs) => {
         if (!err) { res.send(docs); }
         else { console.log('error in Retirving Employee : ' + JSON.stringify(err, undefined, 2)); }

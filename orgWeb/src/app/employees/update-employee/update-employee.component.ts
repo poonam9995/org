@@ -22,16 +22,16 @@ export class UpdateEmployeeComponent implements OnInit {
   newPref1;
   id;
   data;
-  
+
   details = [false, false, false, false, false];
   techSkills = [];
   teckSkills2 = [];
   teckSkills1 = [];
-  Dbdata : Date;
+  Dbdata: Date;
   maxDate: Date;
   public tS = [];
   public uploadfile;
-  public count=0;
+  public count = 0;
   public formData = new FormData();
   public newPref = [];
   constructor(private toastr: ToastrService, private employeeService: EmployeeServiceService, private stateservice: StateService, private route: ActivatedRoute, private router: Router) {
@@ -82,19 +82,12 @@ export class UpdateEmployeeComponent implements OnInit {
 
   }
 
-  onSkillAdd(event) {
-    const teSkill = event.value;
-
-    console.log(teSkill);
-    this.techSkills.push(teSkill);
-    console.log("---------------------------------", this.techSkills);
-  }
   onSubmit() {
 
-    if(this.RegistrationEmployee.value.dob == ""){
+    if (this.RegistrationEmployee.value.dob == "") {
       this.Dbdata = this.RegistrationEmployee.value.dob;
     }
-    else{
+    else {
       this.Dbdata = this.maxDate;
 
     }
@@ -151,7 +144,7 @@ export class UpdateEmployeeComponent implements OnInit {
   }
   onFileChange(event) {
     this.uploadfile = event.target.files[0];
-    }
+  }
 
   getEmp(id) {
     this.employeeService.getEmpDetails(id).subscribe((res: any) => {
@@ -163,8 +156,8 @@ export class UpdateEmployeeComponent implements OnInit {
         console.log(res);
         this.data = res;
         this.citydata = this.stateservice.city[res.state];
-       console.log(res.image);
-       this.uploadfile = res.image;
+        console.log(res.image);
+        this.uploadfile = res.image;
         this.RegistrationEmployee.patchValue({
           '_id': res._id,
           'firstName': res.firstName,
@@ -178,7 +171,7 @@ export class UpdateEmployeeComponent implements OnInit {
           'zip': res.zip,
           'gender': res.gender,
           'salary': res.salary,
-          'image':res.image
+          'image': res.image
         });
 
         this.setTechnicalSkills(res.techSkill);
@@ -189,7 +182,7 @@ export class UpdateEmployeeComponent implements OnInit {
           'techSkill': this.tS,
         });
         this.RegistrationEmployee.patchValue({
-          'hob':this.newPref1,
+          'hob': this.newPref1,
         });
 
       }
@@ -201,22 +194,54 @@ export class UpdateEmployeeComponent implements OnInit {
     this.citydata = this.stateservice.city[val];
   }
 
+  onRemoveing(event){
 
-  setTechnicalSkills(skills) {
-   
-    if( skills == ''){
-      this.techSkills ;
+    console.log(event.value);
+    console.log(this.techSkills);
+    for(var i =0 ;i<this.techSkills.length ;i++){
+      if(event.value==this.techSkills[i]){
+        console.log(event.value);
+        this.techSkills.splice(i,1);
+      }
     }
-    else{
-    this.teckSkills2 = JSON.stringify(skills).split('\"');
-    //console.log(this.teckSkills2);
-    this.teckSkills1 = JSON.stringify(this.teckSkills2[1]).split(',');
-    for (var i = 0; i < this.teckSkills1.length; i++) {
-      this.tS[i] = this.teckSkills1[i].replace(/[^a-zA-Z ]/g, "")
-    }
+    console.log(this.techSkills);
  
-    this.techSkills = this.tS;
   }
+  onSkillAdd(event) {
+    const teSkill = event.value;
+    if (event.value)
+      console.log(teSkill);
+    this.techSkills.push(teSkill);
+    console.log("---------------------------------", this.techSkills);
+  }
+  onRemovetechSkill(event) {
+    console.log(event);
+    console.log(this.techSkills);
+    for (let i = 0; i < this.techSkills.length; i++) {
+      if (this.techSkills[i] == event)
+       {
+        this.techSkills.splice(i,1);
+      }
+      console.log("after removing:", this.techSkills)
+    }
+    console.log("after removing:", this.techSkills)
+    console.log(this.techSkills);
+    // this.techSkills.push(skill);
+  }
+  setTechnicalSkills(skills) {
+
+    if (skills == '') {
+      this.techSkills;
+    }
+    else {
+      this.teckSkills2 = JSON.stringify(skills).split('\"');
+      //console.log(this.teckSkills2);
+      this.teckSkills1 = JSON.stringify(this.teckSkills2[1]).split(',');
+      for (var i = 0; i < this.teckSkills1.length; i++) {
+        this.tS[i] = this.teckSkills1[i].replace(/[^a-zA-Z ]/g, "")
+      }
+      this.techSkills = this.tS;
+    }
     //  console.log(this.techSkills);
   }
 
@@ -228,28 +253,26 @@ export class UpdateEmployeeComponent implements OnInit {
     console.log(newString);
     var newStringOne = JSON.stringify(newString[1]).split(',');
     console.log(newStringOne);
-    
+
 
     for (var i = 0; i < newStringOne.length; i++) {
       var myString = JSON.stringify(newStringOne[i]);
       myString = myString.replace(/[^a-zA-Z ]/g, "");
       this.newPref[i] = myString;
-
     }
-    for(var i = 0; i<this.newPref.length;i++ ){
-      if(this.newPref[i] == "true")
-      {
-        this.newPref[i]=true;
+    for (var i = 0; i < this.newPref.length; i++) {
+      if (this.newPref[i] == "true") {
+        this.newPref[i] = true;
         this.count += 1;
       }
-      else{
-        this.newPref[i]=false;
+      else {
+        this.newPref[i] = false;
         this.count -= 1;
       }
     }
     console.log(this.newPref);
     return this.newPref;
-   
+
   }
   /**Swal.fire({
 position: 'top-end',
@@ -260,23 +283,23 @@ timer: 1500
 }) */
   hobbiesCheckArray = function (event, hobbies) {
     // console.log(hobbies , event.target.checked);
-        this.details=this.newPref;
+    this.details = this.newPref;
     let data = this.hobbies.find(ob => ob['name'] === hobbies);
     console.log(this.newPref);
-   
-   var id =data.id
+
+    var id = data.id
     if (event.target.checked) {
-      this.details[id]=true;
+      this.details[id] = true;
       this.count += 1;
-          }
-      else{
-        this.details[id]=false;
-        this.count -= 1;
     }
-   console.log(this.details, this.count);
+    else {
+      this.details[id] = false;
+      this.count -= 1;
+    }
+    console.log(this.details, this.count);
 
     if (this.count != 1) {
-    this.msgs1 = '';
+      this.msgs1 = '';
     }
     else {
       this.msgs1 = 'Please choose atleast two hobbies option';

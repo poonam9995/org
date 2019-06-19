@@ -8,7 +8,7 @@ import { QuickComponent } from './quick/quick.component';
 import { AuthGuard } from '../auth/auth.guard';
 
 const routes: Routes = [
-  {   path: 'employees', component: ListComponent,canActivate:[AuthGuard]},   
+  {path: 'employees', component: ListComponent,canActivate:[AuthGuard]},   
       { path: 'add', component: AddEmployeeComponent,canActivate:[AuthGuard] },
       { path: 'update/:id', component: UpdateEmployeeComponent, data: {} ,canActivate:[AuthGuard]},
       {path: 'quickAdd',component:QuickComponent,canActivate:[AuthGuard]}

@@ -1,6 +1,13 @@
+<div class="register">
+</div>
+
+<br>
+<br>
+
 <div class="employeeform">
-    <div class="form-Header">
-      Employee Login
+
+  <div class="form-Header">
+      User Login
     </div>
     <br>
     <div class="form-contain">
@@ -32,16 +39,91 @@
                   Enter password.
                 </div> 
               </div>
-  
-            
          <button type="submit" [disabled]="login.controls['email' && 'password'].invalid || login.prestine" class="btn btn-primary">Submit</button>
-        <a routerLink="/register" class="btn btn-primary float-right">Registration</a>
-
-      </form>
+       
+  <a routerLink="/register" class="btn btn-primary "  style="margin-left:30px" >New Registration</a>
+         <button type="button" class="btn btn-info " style="margin-left:30px" (click)="openModal(template)" data-toggle="modal" data-target="#myModal">Forget Password</button>
+   </form>
    
     </div>
-  
   </div> 
 
+
+  <ng-template #template>
+    <div class="modal-body text-center">
+      <div class="modal-content">
+        <div class="modal-header">
+          
+          <h4 class="modal-title">Forget Password</h4>
+          <button type="button" class="close" (click)="close()">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="form-contain">
+                <form (ngSubmit)="onSubmitForget()" [formGroup]='forgetPass' class="form">
+            
+                    <div class="form-group ">
+                      <label for="inputemail">Email Id :</label>
+                      <input type="email" formControlName='email' class="form-control" placeholder="@gmail.com" required>
+            
+                      <div class="alert red-text"
+                        *ngIf="forgetPass.get('email').hasError('required') && forgetPass.get('email').dirty ">
+                        Enter Email Id
+                      </div>
+                      <div class="alert red-text"
+                        *ngIf="forgetPass.get('email').hasError('pattern') &&  forgetPass.get('email').dirty ">
+                        Enter Valid Email Id
+                      </div>
+                    </div>
+            
+                   
+                  <button type="submit" 
+                  [disabled]="forgetPass.controls['email'].invalid || forgetPass.prestine" class="btn btn-primary" >Send</button>
+                </form>
+              </div>
+        </div>
+        <div class="modal-footer">
+         
+          <a routerLink="/" class="btn btn-default" (click)="close()">
+            Close
+           </a>
+        </div>
+      </div>
+      
+    </div>
+  </ng-template>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+  
+      <!-- Modal content-->
+   
+  
+    </div>
+  </div>
 
 

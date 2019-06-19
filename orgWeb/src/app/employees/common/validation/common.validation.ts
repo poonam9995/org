@@ -10,7 +10,7 @@ export class commonValidation {
     return null;
 
   }
-
+  
   static checkTrue(control: AbstractControl): { [key: string]: boolean } | null {
     const data1: any = [];
 
